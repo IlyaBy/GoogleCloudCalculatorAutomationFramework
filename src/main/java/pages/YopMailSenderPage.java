@@ -12,7 +12,7 @@ import java.time.Duration;
 public class YopMailSenderPage extends AbstractPage{
 
 
-    private final Logger logger = LogManager.getRootLogger();
+    private final Logger logger = LogManager.getLogger(YopMailSenderPage.class);
     private final String pageUrl = "https://yopmail.com/en";
     private final By yopMailConsentAcceptButton = By.xpath("//div[@class='fc-footer-buttons']//button[contains(@class, 'fc-cta-consent')]//p[@class='fc-button-label']"); //p[text()='Consent']
     private final By randomEmailGeneratorButton = By.xpath("//a[@href='email-generator'][.//h3[text()='Random Email generator']]");

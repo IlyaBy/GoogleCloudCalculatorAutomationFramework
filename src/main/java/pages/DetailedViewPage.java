@@ -12,7 +12,7 @@ import java.time.Duration;
 
 public class DetailedViewPage extends AbstractPage{
 
-    private final Logger logger = LogManager.getRootLogger();
+    private final Logger logger = LogManager.getLogger(DetailedViewPage.class);
     private final String pageUrl = "https://cloud.google.com/products/calculator/estimate-preview/";
 
     private final By detailedViewCost = By.xpath("//div[div[normalize-space()='Total estimated cost']]/div[contains(text(),'$')]");

@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 
 public class YopMailRecipientPage extends AbstractPage{
 
-    private final Logger logger = LogManager.getRootLogger();
+    private final Logger logger = LogManager.getLogger(YopMailRecipientPage.class);
     private final String pageUrl = "https://yopmail.com/en";
 
     private final By randomEmailGeneratorButton = By.xpath("//a[@href='email-generator'][.//h3[text()='Random Email generator']]");

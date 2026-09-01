@@ -14,7 +14,7 @@ import java.util.Properties;
 @Listeners({TestListener.class})
 public class BaseTest {
 
-    private final Logger logger = LogManager.getRootLogger();
+    private final Logger logger = LogManager.getLogger(BaseTest.class);
 
     protected WebDriver driver;
 

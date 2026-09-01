@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 
 public class PrisingMenuSearchPage extends AbstractPage{
 
-    private final Logger logger = LogManager.getRootLogger();
+    private final Logger logger = LogManager.getLogger(PrisingMenuSearchPage.class);
 
     private String pageUrl = "https://cloud.google.com/products/calculator";
     private final By CalculatorPricingLink = By.xpath("//div[contains(text(),'Pricing calculator')]"); //div[text()='Pricing calculator']

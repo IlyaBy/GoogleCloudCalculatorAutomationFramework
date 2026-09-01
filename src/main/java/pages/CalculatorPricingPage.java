@@ -13,7 +13,7 @@ import java.util.List;
 
 public class CalculatorPricingPage extends AbstractPage {
 
-    private final Logger logger = LogManager.getRootLogger();
+    private final Logger logger = LogManager.getLogger(CalculatorPricingPage.class);
     private final String pageUrl = "https://cloud.google.com/products/calculator";
 
     private final By addToEstimateButton = By.xpath("//h2[contains(text(),'Cost details')]//ancestor::div/following-sibling::div//span[contains(text(),'Add to estimate')]");

@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 
 public class GoogleCloudStartPage extends AbstractPage{
 
-    private final Logger logger = LogManager.getRootLogger();
+    private final Logger logger = LogManager.getLogger(GoogleCloudStartPage.class);
     private final String pageUrl = "https://cloud.google.com/";
     private final By calculatorCookieAcceptButton = By.xpath("//button[@class='glue-cookie-notification-bar__accept']");
     private final By pricingMenu = By.xpath("//a[contains(text(),'Pricing')]");
