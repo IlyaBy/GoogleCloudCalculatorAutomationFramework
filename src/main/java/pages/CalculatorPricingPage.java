@@ -77,10 +77,9 @@ public class CalculatorPricingPage extends AbstractPage {
     public CalculatorPricingPage selectMachineFamily(ComputeEngineInstance instance) {
         logger.debug("Attempting to open MachineFamily dropdown menu using locator: {}", machineFamilyListSelector);
         scrollAndClick(machineFamilyListSelector);
-        logger.info("MachineFamily successfully selected: {}", instance.getMachineType());
-
+        logger.debug("Attempting to select MachineFamily option: {}", instance.getMachineFamily());
         waitAndClick(By.xpath("//li[@role='option' and .//span[contains(text(), '" + instance.getMachineFamily() + "')]]"));
-        //logger.info("MachineFamily successfully selected: {}", instance.getMachineType());
+        logger.info("MachineFamily successfully selected: {}", instance.getMachineType());
         return this;
     }
 
@@ -137,7 +136,7 @@ public class CalculatorPricingPage extends AbstractPage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         try {
-            WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(2));
+            WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(3));
             shortWait.until(ExpectedConditions.presenceOfElementLocated(costUpdateIndicator));
             logger.debug("Update indicator appeared. Waiting for it to disappear...");
         } catch (TimeoutException e) {

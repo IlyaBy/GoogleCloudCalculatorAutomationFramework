@@ -66,12 +66,15 @@ public abstract class AbstractPage {
     }
 
     protected void waitAndClick(By locator) {
-        WebElement element = new WebDriverWait(driver, Duration.ofSeconds(WAIT_TIMEOUT_SECONDS))
+        new WebDriverWait(driver, Duration.ofSeconds(WAIT_TIMEOUT_SECONDS))
                 .ignoring(StaleElementReferenceException.class)
-                .until(ExpectedConditions.presenceOfElementLocated(locator));
+                .until(d -> {
 
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+                    WebElement element = d.findElement(locator);
 
+                    ((JavascriptExecutor) d).executeScript("arguments[0].click();", element);
+                    return true;
+                });
     }
 
     protected void waitAndSendKeys(By locator, String text) {
