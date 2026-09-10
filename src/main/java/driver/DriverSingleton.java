@@ -43,7 +43,7 @@ public class DriverSingleton {
             }
 
             driver.manage().window().maximize();
-            LOGGER.info("WebDriver instance successfully started and window maximized.");
+            LOGGER.info("WebDriver instance successfully started.");
 
         }
         return driver;

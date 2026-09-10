@@ -26,7 +26,7 @@ public class GoogleCloudStartPage extends AbstractPage{
     }
 
     public PrisingMenuSearchPage openPricingMenuCalculator (){
-        driver.findElement(pricingMenu).click();
+        waitAndClick(pricingMenu);
         return new PrisingMenuSearchPage(driver);
     }
 

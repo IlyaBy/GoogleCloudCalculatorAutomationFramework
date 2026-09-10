@@ -78,7 +78,9 @@ public class CalculatorPricingPage extends AbstractPage {
         logger.debug("Attempting to open MachineFamily dropdown menu using locator: {}", machineFamilyListSelector);
         scrollAndClick(machineFamilyListSelector);
         logger.info("MachineFamily successfully selected: {}", instance.getMachineType());
+
         waitAndClick(By.xpath("//li[@role='option' and .//span[contains(text(), '" + instance.getMachineFamily() + "')]]"));
+        //logger.info("MachineFamily successfully selected: {}", instance.getMachineType());
         return this;
     }
 

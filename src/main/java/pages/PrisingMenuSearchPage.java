@@ -25,7 +25,7 @@ public class PrisingMenuSearchPage extends AbstractPage{
     }
 
     public CalculatorPricingPage openCalculatorPricingPage (){
-        driver.findElement(CalculatorPricingLink).click();
+        waitAndClick(CalculatorPricingLink);
         logger.info("CalculatorPricingPage page opened");
         return new CalculatorPricingPage(driver);
     }
