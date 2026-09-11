@@ -93,19 +93,23 @@ public abstract class AbstractPage {
     }
 
     protected void scrollAndClick(By locator) {
-
-        WebElement element = new WebDriverWait(driver, Duration.ofSeconds(WAIT_TIMEOUT_SECONDS))
+        new WebDriverWait(driver, Duration.ofSeconds(WAIT_TIMEOUT_SECONDS))
                 .ignoring(StaleElementReferenceException.class)
-                .until(ExpectedConditions.elementToBeClickable(locator));
+                .until(d -> {
 
-        ((JavascriptExecutor) driver).executeScript(
-                "arguments[0].scrollIntoView({behavior: 'auto', block: 'center'});",
-                element
-        );
+                    WebElement element = d.findElement(locator);
 
-        ((JavascriptExecutor) driver).executeScript(
-                "arguments[0].click();",
-                element
-        );
+                    ((JavascriptExecutor) d).executeScript(
+                            "arguments[0].scrollIntoView({behavior: 'auto', block: 'center'});",
+                            element
+                    );
+
+                    ((JavascriptExecutor) d).executeScript(
+                            "arguments[0].click();",
+                            element
+                    );
+
+                    return true;
+                });
     }
 }
