@@ -6,22 +6,22 @@ pipeline {
         choice(
             name: 'ENVIRONMENT',
             choices: ['qa', 'dev'],
-            description: 'Выберите тестовое окружение (загрузит соответствующий .properties файл)'
+            description: 'Choose test environment'
         )
         choice(
             name: 'BROWSER',
             choices: ['chrome', 'firefox', 'edge'],
-            description: 'Выберите браузер для тестирования'
+            description: 'Choose the browser for testing'
         )
         booleanParam(
             name: 'HEADLESS_MODE',
             defaultValue: true,
-            description: 'Запускать браузер в скрытом режиме (обязательно для Jenkins без GUI)'
+            description: 'Start browser in healless mode'
         )
         choice(
             name: 'SUITE',
             choices: ['src/test/resources/regression-suite.xml', 'src/test/resources/smoke-suite.xml'],
-            description: 'Выберите TestNG XML сьют для запуска'
+            description: 'Choose TestNG XML suite file'
         )
     }
 
