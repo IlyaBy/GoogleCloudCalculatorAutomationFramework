@@ -5,14 +5,14 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class PrisingMenuSearchPage extends AbstractPage{
+public class PricingMenuSearchPage extends AbstractPage{
 
-    private final Logger logger = LogManager.getLogger(PrisingMenuSearchPage.class);
+    private final Logger logger = LogManager.getLogger(PricingMenuSearchPage.class);
 
     private String pageUrl = "https://cloud.google.com/products/calculator";
-    private final By CalculatorPricingLink = By.xpath("//div[contains(text(),'Pricing calculator')]"); //div[text()='Pricing calculator']
+    private final By CalculatorPricingLink = By.xpath("//div[contains(text(),'Pricing calculator')]");
 
-    public PrisingMenuSearchPage(WebDriver driver) {
+    public PricingMenuSearchPage(WebDriver driver) {
 
         super(driver);
     }
@@ -20,7 +20,7 @@ public class PrisingMenuSearchPage extends AbstractPage{
     @Override
     public AbstractPage openPage() {
         driver.navigate().to(pageUrl);
-        logger.info("PrisingMenuSearchPage page opened");
+        logger.info("PricingMenuSearchPage page opened");
         return this;
     }
 

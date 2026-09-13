@@ -25,9 +25,9 @@ public class GoogleCloudStartPage extends AbstractPage{
         return this;
     }
 
-    public PrisingMenuSearchPage openPricingMenuCalculator (){
+    public PricingMenuSearchPage openPricingMenuCalculator (){
         waitAndClick(pricingMenu);
-        return new PrisingMenuSearchPage(driver);
+        return new PricingMenuSearchPage(driver);
     }
 
     public void acceptCookiesIfPresent() {

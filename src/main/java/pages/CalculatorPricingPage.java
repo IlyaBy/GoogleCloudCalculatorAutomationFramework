@@ -1,6 +1,5 @@
 package pages;
 
-import model.ComputeEngineInstance;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
@@ -50,79 +49,78 @@ public class CalculatorPricingPage extends AbstractPage {
         GoogleCloudStartPage googlePage = new GoogleCloudStartPage(driver);
         googlePage.openPage();
         googlePage.acceptCookiesIfPresent();
-        PrisingMenuSearchPage menuSearchPage = googlePage.openPricingMenuCalculator();
+        PricingMenuSearchPage menuSearchPage = googlePage.openPricingMenuCalculator();
         menuSearchPage.openCalculatorPricingPage();
         scrollAndClick(addToEstimateButton);
         waitAndClick(computeEngineTab);
         return this;
     }
 
-    public CalculatorPricingPage setNumberOfInstances(ComputeEngineInstance instance) {
-        waitAndSendKeys(numberOfInstancesInput, instance.getNumberOfInstances());
+    public CalculatorPricingPage setNumberOfInstances(String numberOfInstances) {
+        waitAndSendKeys(numberOfInstancesInput, numberOfInstances);
         return this;
     }
 
-    public CalculatorPricingPage selectOperatingSystem(ComputeEngineInstance instance) {
+    public CalculatorPricingPage selectOperatingSystem(String operatingSystem) {
         scrollAndClick(operatingSystemListSelector);
-        waitAndClick(By.xpath("//li[@role='option' and .//span[contains(text(), '" + instance.getOperatingSystem() + "')]]"));
+        waitAndClick(By.xpath("//li[@role='option' and .//span[contains(text(), '" + operatingSystem + "')]]"));
         return this;
     }
 
-    public CalculatorPricingPage selectProvisioningModel(ComputeEngineInstance instance) {
-        scrollAndClick(By.xpath("//div[text()='" + instance.getProvisioningModel() + "']"));
+    public CalculatorPricingPage selectProvisioningModel(String provisioningModel) {
+        scrollAndClick(By.xpath("//div[text()='" + provisioningModel + "']"));
         return this;
     }
 
-
-    public CalculatorPricingPage selectMachineFamily(ComputeEngineInstance instance) {
+    public CalculatorPricingPage selectMachineFamily(String machineFamily) {
         logger.debug("Attempting to open MachineFamily dropdown menu using locator: {}", machineFamilyListSelector);
         scrollAndClick(machineFamilyListSelector);
-        logger.debug("Attempting to select MachineFamily option: {}", instance.getMachineFamily());
-        waitAndClick(By.xpath("//li[@role='option' and .//span[contains(text(), '" + instance.getMachineFamily() + "')]]"));
-        logger.info("MachineFamily successfully selected: {}", instance.getMachineType());
+        logger.debug("Attempting to select MachineFamily option: {}", machineFamily);
+        waitAndClick(By.xpath("//li[@role='option' and .//span[contains(text(), '" + machineFamily + "')]]"));
+        logger.info("MachineFamily successfully selected: {}", machineFamily);
         return this;
     }
 
-    public CalculatorPricingPage selectSeries(ComputeEngineInstance instance) {
+    public CalculatorPricingPage selectSeries(String series) {
         scrollAndClick(seriesListSelector);
-        waitAndClick(By.xpath("//li[@role='option'][@data-value='" + instance.getSeries() + "']"));
+        waitAndClick(By.xpath("//li[@role='option'][@data-value='" + series + "']"));
         return this;
     }
 
-    public CalculatorPricingPage selectMachineType(ComputeEngineInstance instance) {
+    public CalculatorPricingPage selectMachineType(String machineType) {
         scrollAndClick(machineTypeListSelector);
-        waitAndClick(By.xpath("//li[@role='option'][@data-value='" + instance.getMachineType() + "']"));
+        waitAndClick(By.xpath("//li[@role='option'][@data-value='" + machineType + "']"));
         return this;
     }
 
-    public CalculatorPricingPage selectGPUType(ComputeEngineInstance instance) {
+    public CalculatorPricingPage selectGPUType(String gpuType) {
         waitAndClick(checkBoxAddGPU);
         waitAndClick(listOfGPU);
-        waitAndClick(By.xpath("//li[@role='option'][@data-value='" + instance.getGpuType() + "']"));
+        waitAndClick(By.xpath("//li[@role='option'][@data-value='" + gpuType + "']"));
         return this;
     }
 
-    public CalculatorPricingPage selectGPUNumber(ComputeEngineInstance instance) {
+    public CalculatorPricingPage selectGPUNumber(String gpuNumber) {
         waitAndClick(numberOfGPUSelector);
-        waitAndClick(By.xpath("//li[@role='option'][@data-value='" + instance.getGpuNumber() + "']"));
+        waitAndClick(By.xpath("//li[@role='option'][@data-value='" + gpuNumber + "']"));
         return this;
     }
 
-    public CalculatorPricingPage selectLocalSSD(ComputeEngineInstance instance) {
+    public CalculatorPricingPage selectLocalSSD(String localSSD) {
         waitAndClick(SSDSelector);
-        waitAndClick(By.xpath("//li[@role='option' and .//span[contains(text(), '" + instance.getLocalSSD() + "')]]"));
+        waitAndClick(By.xpath("//li[@role='option' and .//span[contains(text(), '" + localSSD + "')]]"));
         return this;
     }
 
-    public CalculatorPricingPage selectRegion(ComputeEngineInstance instance) {
+    public CalculatorPricingPage selectRegion(String region) {
         waitAndClick(regionSelector);
-        waitAndClick(By.xpath("//li[@role='option' and .//span[contains(text(), '" + instance.getRegion() + "')]]"));
+        waitAndClick(By.xpath("//li[@role='option' and .//span[contains(text(), '" + region + "')]]"));
         return this;
     }
 
-    public CalculatorPricingPage selectDiscountOptions(ComputeEngineInstance instance) {
+    public CalculatorPricingPage selectDiscountOptions(String discountOptions) {
         scrollAndClick(discountOptionsList);
-        waitAndClick(By.xpath("//li[@role='option' and .//span[contains(text(), '" + instance.getDiscountOptions() + "')]]"));
+        waitAndClick(By.xpath("//li[@role='option' and .//span[contains(text(), '" + discountOptions + "')]]"));
         return this;
     }
 
@@ -170,10 +168,10 @@ public class CalculatorPricingPage extends AbstractPage {
 
     public YopMailSenderPage openYopMaiSenderTab() {
 
-        openAndSwitchToEmailSenderTab("https://yopmail.com/en");
-
-        logger.info("Successfully switched and initialized YopMailSenderPage");
-        return new YopMailSenderPage(driver);
+        createAndSwitchToNewTab();
+        driver.get("https://yopmail.com/en");
+        YopMailSenderPage yopMailSenderPage = new YopMailSenderPage(driver);
+        logger.info("Successfully opened and initialized YopMailSenderPage in a new tab");
+        return yopMailSenderPage;
     }
-
 }

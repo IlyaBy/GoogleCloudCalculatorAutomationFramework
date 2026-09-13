@@ -38,15 +38,19 @@ public class YopMailSenderPage extends AbstractPage{
         return this;
     }
 
-    public CalculatorPricingPage returnToCalculatorPricingPage() {
-        switchToCalculatorPricingTab();
-        return new CalculatorPricingPage(driver);
-    }
+   public CalculatorPricingPage returnToCalculatorPricingPage() {
+
+       String calculatorTab = new java.util.ArrayList<>(driver.getWindowHandles()).get(0);
+       driver.switchTo().window(calculatorTab);
+       logger.info("Switched back to Calculator Pricing Tab (index 0)");
+       return new CalculatorPricingPage(driver);
+   }
 
     public YopMailRecipientPage openYopMaiRecipientTab() {
 
-        openAndSwitchToEmailRecipientTab("https://yopmail.com/en");
-        logger.info("Successfully switched to YopMail Recipient tab ");
+        createAndSwitchToNewTab();
+        driver.get("https://yopmail.com/en");
+        logger.info("Successfully opened and switched to YopMail Recipient tab");
         return new YopMailRecipientPage(driver);
     }
 
@@ -66,7 +70,7 @@ public class YopMailSenderPage extends AbstractPage{
 
     public YopMailSenderPage fillInEmailSubjectField(String emailSubject){
         driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@name='ifmail']")));
-        driver.findElement(subjectField).sendKeys(emailSubject);
+        waitAndSendKeys(subjectField, emailSubject);
         driver.switchTo().defaultContent();
         return this;
     }

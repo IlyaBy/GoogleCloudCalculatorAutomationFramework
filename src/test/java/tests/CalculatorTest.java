@@ -15,22 +15,22 @@ public class CalculatorTest extends BaseTest {
 
 
    @Test (groups={"smoke", "regression"})
-   public void CostComparingTest() {
+   public void costComparingTest() {
        ComputeEngineInstance testInstance = InstanceCreator.createFromProperties(properties);
        CalculatorPricingPage calcPage = new CalculatorPricingPage(driver);
 
        calcPage.createCalculatorPricingPage()
-               .setNumberOfInstances(testInstance)
-               .selectOperatingSystem(testInstance)
-               .selectProvisioningModel(testInstance)
-               .selectMachineFamily(testInstance)
-               .selectSeries(testInstance)
-               .selectMachineType(testInstance)
-               .selectGPUType(testInstance)
-               .selectGPUNumber(testInstance)
-               .selectLocalSSD(testInstance)
-               .selectRegion(testInstance)
-               .selectDiscountOptions(testInstance);
+               .setNumberOfInstances(testInstance.getNumberOfInstances())
+               .selectOperatingSystem(testInstance.getOperatingSystem())
+               .selectProvisioningModel(testInstance.getProvisioningModel())
+               .selectMachineFamily(testInstance.getMachineFamily())
+               .selectSeries(testInstance.getSeries())
+               .selectMachineType(testInstance.getMachineType())
+               .selectGPUType(testInstance.getGpuType())
+               .selectGPUNumber(testInstance.getGpuNumber())
+               .selectLocalSSD(testInstance.getLocalSSD())
+               .selectRegion(testInstance.getRegion())
+               .selectDiscountOptions(testInstance.getDiscountOptions());
 
        String calculatorEstimatedCost=calcPage.getEstimatedCost();
        calcPage.openDetailedView();
@@ -46,17 +46,17 @@ public class CalculatorTest extends BaseTest {
         CalculatorPricingPage calcPage = new CalculatorPricingPage(driver);
 
         calcPage.createCalculatorPricingPage()
-                .setNumberOfInstances(testInstance)
-                .selectOperatingSystem(testInstance)
-                .selectProvisioningModel(testInstance)
-                .selectMachineFamily(testInstance)
-                .selectSeries(testInstance)
-                .selectMachineType(testInstance)
-                .selectGPUType(testInstance)
-                .selectGPUNumber(testInstance)
-                .selectLocalSSD(testInstance)
-                .selectRegion(testInstance)
-                .selectDiscountOptions(testInstance);
+                .setNumberOfInstances(testInstance.getNumberOfInstances())
+                .selectOperatingSystem(testInstance.getOperatingSystem())
+                .selectProvisioningModel(testInstance.getProvisioningModel())
+                .selectMachineFamily(testInstance.getMachineFamily())
+                .selectSeries(testInstance.getSeries())
+                .selectMachineType(testInstance.getMachineType())
+                .selectGPUType(testInstance.getGpuType())
+                .selectGPUNumber(testInstance.getGpuNumber())
+                .selectLocalSSD(testInstance.getLocalSSD())
+                .selectRegion(testInstance.getRegion())
+                .selectDiscountOptions(testInstance.getDiscountOptions());
         String calculatorEstimatedCost=calcPage.getEstimatedCost();
 
         YopMailSenderPage mailSenderPage = calcPage.openYopMaiSenderTab();
@@ -69,11 +69,11 @@ public class CalculatorTest extends BaseTest {
 
         mailRecipientPage.generateEmailToCopy();
 
-        String RecipientPageMail= mailRecipientPage.copyEmail();
+        String recipientPageMail= mailRecipientPage.copyEmail();
 
         mailRecipientPage.returnToYopMailSenderPage()
                          .sendNewEmail()
-                         .fillInEmailRecipientField(RecipientPageMail)
+                         .fillInEmailRecipientField(recipientPageMail)
                          .sendEmail();
 
         Assert.assertEquals(mailSenderPage.getTextFromEmailSendConfirmation(), "Your message has been sent", "Message was not sent successfully");

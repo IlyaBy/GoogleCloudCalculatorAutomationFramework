@@ -26,7 +26,10 @@ public class YopMailRecipientPage extends AbstractPage{
     }
 
     public YopMailSenderPage returnToYopMailSenderPage() {
-        switchToEmailSenderTab();
+
+        String emailSenderTab = new java.util.ArrayList<>(driver.getWindowHandles()).get(1);
+        driver.switchTo().window(emailSenderTab);
+        logger.info("Switched back to YopMail Sender Tab");
         return new YopMailSenderPage(driver);
     }
 

@@ -16,53 +16,21 @@ public abstract class AbstractPage {
 
     protected final int WAIT_TIMEOUT_SECONDS = 10;
 
-    protected static String calculatorTab;
-    protected static String emailSenderTab;
-    protected static String emailRecipientTab;
-
     public AbstractPage(WebDriver driver) {
         this.driver = driver;
 
-        if (calculatorTab == null) {
-            calculatorTab = driver.getWindowHandle();
-        }
     }
 
     protected abstract AbstractPage openPage();
 
-    private String createAndSwitchToNewTab() {
+    protected String createAndSwitchToNewTab() {
         Set<String> beforeOpen = driver.getWindowHandles();
         ((JavascriptExecutor) driver).executeScript("window.open()");
         Set<String> afterOpen = driver.getWindowHandles();
         afterOpen.removeAll(beforeOpen);
-        return afterOpen.iterator().next();
-    }
-
-    protected void openAndSwitchToEmailSenderTab(String url) {
-        emailSenderTab = createAndSwitchToNewTab();
-        driver.switchTo().window(emailSenderTab);
-        driver.get(url);
-    }
-
-    protected void openAndSwitchToEmailRecipientTab(String url) {
-        emailRecipientTab = createAndSwitchToNewTab();
-        driver.switchTo().window(emailRecipientTab);
-        driver.get(url);
-    }
-
-    protected void switchToCalculatorPricingTab() {
-
-        if (calculatorTab != null) driver.switchTo().window(calculatorTab);
-    }
-
-    protected void switchToEmailSenderTab() {
-
-        if (emailSenderTab != null) driver.switchTo().window(emailSenderTab);
-    }
-
-    protected void switchToEmailRecipientTab() {
-
-        if (emailRecipientTab != null) driver.switchTo().window(emailRecipientTab);
+        String newTab = afterOpen.iterator().next();
+        driver.switchTo().window(newTab);
+        return newTab;
     }
 
     protected void waitAndClick(By locator) {
