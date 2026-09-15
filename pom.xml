@@ -84,12 +84,7 @@
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.22/aspectjweaver-1.9.22.jar"
                     </argLine>
-                    <properties>
-                        <property>
-                            <name>listener</name>
-                            <value>com.epam.reportportal.testng.ReportPortalTestNGListener</value>
-                        </property>
-                    </properties>
+
                 </configuration>
                 <dependencies>
                     <dependency>
