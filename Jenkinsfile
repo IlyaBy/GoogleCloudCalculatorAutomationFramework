@@ -16,7 +16,7 @@ pipeline {
         booleanParam(
             name: 'HEADLESS_MODE',
             defaultValue: true,
-            description: 'Start browser in healless mode'
+            description: 'Start browser in headless mode'
         )
         choice(
             name: 'SUITE',

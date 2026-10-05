@@ -139,7 +139,7 @@ public class CalculatorPricingPage extends AbstractPage {
             logger.debug("Update indicator appeared. Waiting for it to disappear...");
         } catch (TimeoutException e) {
 
-            logger.warn("Update indicator did not appear within 2 seconds, proceeding to cost extraction.");
+            logger.warn("Update indicator did not appear within 3 seconds, proceeding to cost extraction.");
         }
 
         wait.until(ExpectedConditions.invisibilityOfElementLocated(costUpdateIndicator));
